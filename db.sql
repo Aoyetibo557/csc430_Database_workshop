@@ -198,4 +198,4 @@ VALUES
 -- add more rows here
 GO
 
-SELECT * FROM questions WHERE quest_category LIKE '%Football%'
+SELECT * FROM questions
