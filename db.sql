@@ -44,7 +44,9 @@ CREATE TABLE quiz
 (
     quizId INT NOT NULL PRIMARY KEY, -- primary key column
     category [NVARCHAR](50) NOT NULL,
-    num_questions [NVARCHAR](50) NOT NULL
+    num_questions [NVARCHAR](50) NOT NULL,
+    userId INT,
+    FOREIGN KEY (userId) REFERENCES Users (userId)
     -- specify more columns here
 );
 GO
@@ -66,7 +68,7 @@ CREATE TABLE questions
 );
 GO
 
--- Insert rows into table 'TableName'
+-- Insert rows into table 'Users'
 INSERT INTO Users
 ( -- columns to insert data into
  [userId], [username], [email], [user_score]
@@ -77,8 +79,51 @@ VALUES
 ),
 ( -- second row: values for the columns in the list above
  '2', 'gabesupo', 'aoyetibo@hotmail.com', '10'
+),
+( -- third row: values for the columns in the list above
+ '3', 'gunther', 'gunther3209@gmail.com', '5'
 )
 -- add more rows here
 GO
 
 SELECT * FROM Users; 
+
+-- Delete rows from table 'Users'
+DELETE FROM Users
+WHERE userId = 1	/* add search conditions here */
+GO
+
+/*
+-- Allows user to Know whiuch sport quiz they played 
+-- UserId Provides Foreing Key.
+*/
+-- Insert rows into table 'quiz'
+INSERT INTO quiz
+( -- columns to insert data into
+ [quizId], [category], [num_questions], [userId]
+)
+VALUES
+( -- first row: values for the columns in the list above
+ '1', 'Soccer', '10', '3'
+),
+( -- second row: values for the columns in the list above
+ '2', 'Football', '15', '1'
+),
+( -- second row: values for the columns in the list above
+ '3', 'Hockey', '5', '2'
+),
+( -- second row: values for the columns in the list above
+ '4', 'Soccer', '11', '2'
+),
+( -- second row: values for the columns in the list above
+ '5', 'Basketball', '20', '3'
+),
+( -- second row: values for the columns in the list above
+ '6', 'Baseball', '9', '1'
+)
+-- add more rows here
+GO
+
+-- Select rows from a Table or View 'quiz' in schema 'SchemaName'
+SELECT * FROM quiz
+ 
